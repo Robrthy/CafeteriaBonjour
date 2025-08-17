@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafeteria Bonjour</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Carrinho flutuante */
+    .carrinho {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #ffcc00;
+      padding: 10px 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    .carrinho.animar {
+      transform: scale(1.2);
+    }
+    .carrinho-modal {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      width: 300px;
+      background: white;
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .quantidade {
+      width: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>☕ Cafeteria Bonjour</h1>
+    <p>O melhor cafe do estado</p>
+  </header>
+
+  <nav>
+    <a href="#cafes">Cafés</a>
+    <a href="#geladas">Bebidas Geladas</a>
+    <a href="#bolos">Bolos</a>
+    <a href="#combos">Combos</a>
+    <a href="#sobre">Sobre</a>
+  </nav>
+
+  <!-- ===== Cafés Quentes ===== -->
+<section id="cafes-quentes" class="menu">
+  <h2>☕ Cafés Quentes</h2>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/expresso.jpeg" alt="Expresso"></div>
+    <h3>Expresso</h3>
+    <p>R$ 6,00</p>
+    <input type="number" min="1" value="1" id="qtdExpresso">
+    <button onclick="addCarrinho('Expresso', 6.00, 'qtdExpresso')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/cappuccino.jpeg" alt="Cappuccino"></div>
+    <h3>Cappuccino</h3>
+    <p>R$ 10,00</p>
+    <input type="number" min="1" value="1" id="qtdCappuccino">
+    <button onclick="addCarrinho('Cappuccino', 10.00, 'qtdCappuccino')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/latte.jpeg" alt="Latte"></div>
+    <h3>Latte</h3>
+    <p>R$ 12,00</p>
+    <input type="number" min="1" value="1" id="qtdLatte">
+    <button onclick="addCarrinho('Latte', 12.00, 'qtdLatte')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/mocha.jpeg" alt="Mocha"></div>
+    <h3>Mocha</h3>
+    <p>R$ 14,00</p>
+    <input type="number" min="1" value="1" id="qtdMocha">
+    <button onclick="addCarrinho('Mocha', 14.00, 'qtdMocha')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/macchiato.jpeg" alt="Macchiato"></div>
+    <h3>Macchiato</h3>
+    <p>R$ 11,00</p>
+    <input type="number" min="1" value="1" id="qtdMacchiato">
+    <button onclick="addCarrinho('Macchiato', 11.00, 'qtdMacchiato')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/americano.jpeg" alt="Americano"></div>
+    <h3>Americano</h3>
+    <p>R$ 8,00</p>
+    <input type="number" min="1" value="1" id="qtdAmericano">
+    <button onclick="addCarrinho('Americano', 8.00, 'qtdAmericano')">Adicionar</button>
+  </div>
+
+  <!-- Cafés especiais quentes -->
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Irish Coffee.jpeg" alt="Irish Coffee"></div>
+    <h3>Irish Coffee</h3>
+    <p>R$ 16,00</p>
+    <input type="number" min="1" value="1" id="qtdIrishCoffee">
+    <button onclick="addCarrinho('Irish Coffee', 16.00, 'qtdIrishCoffee')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/affogato.jpeg" alt="Affogato"></div>
+    <h3>Affogato</h3>
+    <p>R$ 18,00</p>
+    <input type="number" min="1" value="1" id="qtdAffogato">
+    <button onclick="addCarrinho('Affogato', 18.00, 'qtdAffogato')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/ristretto.jpeg" alt="Ristretto"></div>
+    <h3>Ristretto</h3>
+    <p>R$ 7,00</p>
+    <input type="number" min="1" value="1" id="qtdRistretto">
+    <button onclick="addCarrinho('Ristretto', 7.00, 'qtdRistretto')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Café Vienense.jpeg" alt="Café Vienense"></div>
+    <h3>Café Vienense</h3>
+    <p>R$ 15,00</p>
+    <input type="number" min="1" value="1" id="qtdCafeVienense">
+    <button onclick="addCarrinho('Café Vienense', 15.00, 'qtdCafeVienense')">Adicionar</button>
+  </div>
+</section>
+
+  <!-- ===== Cafés Gelados ===== -->
+<section id="cafes-gelados" class="menu">
+  <h2>❄️ Cafés Gelados</h2>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Café Gelado.jpeg" alt="Café Gelado"></div>
+    <h3>Café Gelado</h3>
+    <p>R$ 12,00</p>
+    <input type="number" min="1" value="1" id="qtdCafeGelado">
+    <button onclick="addCarrinho('Café Gelado', 12.00, 'qtdCafeGelado')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Café con Leite.jpeg" alt="Café con Leite"></div>
+    <h3>Café con Leite</h3>
+    <p>R$ 9,00</p>
+    <input type="number" min="1" value="1" id="qtdCafeConLeite">
+    <button onclick="addCarrinho('Café con Leite', 9.00, 'qtdCafeConLeite')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Café Caramelo.jpeg" alt="Café Caramelo"></div>
+    <h3>Café Caramelo</h3>
+    <p>R$ 13,00</p>
+    <input type="number" min="1" value="1" id="qtdCafeCaramelo">
+    <button onclick="addCarrinho('Café Caramelo', 13.00, 'qtdCafeCaramelo')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Café com Chocolate.jpeg" alt="Café com Chocolate"></div>
+    <h3>Café com Chocolate</h3>
+    <p>R$ 14,00</p>
+    <input type="number" min="1" value="1" id="qtdCafeChocolate">
+    <button onclick="addCarrinho('Café com Chocolate', 14.00, 'qtdCafeChocolate')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Americano Gelado.jpeg" alt="Americano Gelado"></div>
+    <h3>Americano Gelado</h3>
+    <p>R$ 10,00</p>
+    <input type="number" min="1" value="1" id="qtdAmericanoGelado">
+    <button onclick="addCarrinho('Americano Gelado', 10.00, 'qtdAmericanoGelado')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Mocha Gelado.jpeg" alt="Mocha Gelado"></div>
+    <h3>Mocha Gelado</h3>
+    <p>R$ 16,00</p>
+    <input type="number" min="1" value="1" id="qtdMochaGelado">
+    <button onclick="addCarrinho('Mocha Gelado', 16.00, 'qtdMochaGelado')">Adicionar</button>
+  </div>
+</section>
+
+ <!-- ===== Bebidas Geladas ===== -->
+<section id="bebidas-geladas" class="menu">
+  <h2>❄️ Bebidas Geladas</h2>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/frappuccino.jpeg" alt="Frappuccino"></div>
+    <h3>Frappuccino</h3>
+    <p>R$ 15,00</p>
+    <input type="number" min="1" value="1" id="qtdFrappuccino">
+    <button onclick="addCarrinho('Frappuccino', 15.00, 'qtdFrappuccino')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/smoothie.jpeg" alt="Smoothie"></div>
+    <h3>Smoothie</h3>
+    <p>R$ 12,00</p>
+    <input type="number" min="1" value="1" id="qtdSmoothie">
+    <button onclick="addCarrinho('Smoothie', 12.00, 'qtdSmoothie')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/iced_coffee.jpeg" alt="Iced Coffee"></div>
+    <h3>Iced Coffee</h3>
+    <p>R$ 14,00</p>
+    <input type="number" min="1" value="1" id="qtdIcedCoffee">
+    <button onclick="addCarrinho('Iced Coffee', 14.00, 'qtdIcedCoffee')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/matcha_frappe.jpeg" alt="Matcha Frappe"></div>
+    <h3>Matcha Frappe</h3>
+    <p>R$ 16,00</p>
+    <input type="number" min="1" value="1" id="qtdMatchaFrappe">
+    <button onclick="addCarrinho('Matcha Frappe', 16.00, 'qtdMatchaFrappe')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/milkshake_chocolate.jpeg" alt="Milkshake de Chocolate"></div>
+    <h3>Milkshake de Chocolate</h3>
+    <p>R$ 18,00</p>
+    <input type="number" min="1" value="1" id="qtdMilkshakeChoco">
+    <button onclick="addCarrinho('Milkshake de Chocolate', 18.00, 'qtdMilkshakeChoco')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/milkshake_morango.jpeg" alt="Milkshake de Morango"></div>
+    <h3>Milkshake de Morango</h3>
+    <p>R$ 18,00</p>
+    <input type="number" min="1" value="1" id="qtdMilkshakeMorango">
+    <button onclick="addCarrinho('Milkshake de Morango', 18.00, 'qtdMilkshakeMorango')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/iced_latte.jpeg" alt="Iced Latte"></div>
+    <h3>Iced Latte</h3>
+    <p>R$ 15,00</p>
+    <input type="number" min="1" value="1" id="qtdIcedLatte">
+    <button onclick="addCarrinho('Iced Latte', 15.00, 'qtdIcedLatte')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/iced_mocha.jpeg" alt="Iced Mocha"></div>
+    <h3>Iced Mocha</h3>
+    <p>R$ 16,00</p>
+    <input type="number" min="1" value="1" id="qtdIcedMocha">
+    <button onclick="addCarrinho('Iced Mocha', 16.00, 'qtdIcedMocha')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/iced_caramel.jpeg" alt="Iced Caramel"></div>
+    <h3>Iced Caramel</h3>
+    <p>R$ 17,00</p>
+    <input type="number" min="1" value="1" id="qtdIcedCaramel">
+    <button onclick="addCarrinho('Iced Caramel', 17.00, 'qtdIcedCaramel')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/ice_americano.jpeg" alt="Ice Americano"></div>
+    <h3>Ice Americano</h3>
+    <p>R$ 12,00</p>
+    <input type="number" min="1" value="1" id="qtdIceAmericano">
+    <button onclick="addCarrinho('Ice Americano', 12.00, 'qtdIceAmericano')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/ice_matcha.jpeg" alt="Ice Matcha"></div>
+    <h3>Ice Matcha</h3>
+    <p>R$ 16,00</p>
+    <input type="number" min="1" value="1" id="qtdIceMatcha">
+    <button onclick="addCarrinho('Ice Matcha', 16.00, 'qtdIceMatcha')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/frappe_chocolate.jpeg" alt="Frappe de Chocolate"></div>
+    <h3>Frappe de Chocolate</h3>
+    <p>R$ 18,00</p>
+    <input type="number" min="1" value="1" id="qtdFrappeChoco">
+    <button onclick="addCarrinho('Frappe de Chocolate', 18.00, 'qtdFrappeChoco')">Adicionar</button>
+  </div>
+</section>
+
+
+  <!-- Bolos -->
+<section id="bolos" class="menu">
+  <h2>🍰 Bolos</h2>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/bolo chocolate.jpg" alt="Bolo de Chocolate"></div>
+    <h3>Bolo de Chocolate</h3>
+    <p>R$ 7,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdBoloChocolate">
+    <button onclick="addCarrinho('Bolo de Chocolate', 7.00, 'qtdBoloChocolate')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/bolo cenoura.jpeg" alt="Bolo de Cenoura"></div>
+    <h3>Bolo de Cenoura</h3>
+    <p>R$ 6,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdBoloCenoura">
+    <button onclick="addCarrinho('Bolo de Cenoura', 6.00, 'qtdBoloCenoura')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/Bolo Red Velvet.jpeg" alt="Bolo Red Velvet"></div>
+    <h3>Bolo Red Velvet</h3>
+    <p>R$ 9,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdBoloRedVelvet">
+    <button onclick="addCarrinho('Bolo Red Velvet', 9.00, 'qtdBoloRedVelvet')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/bolo limao.jpeg" alt="Bolo de Limão"></div>
+    <h3>Bolo de Limão</h3>
+    <p>R$ 8,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdBoloLimao">
+    <button onclick="addCarrinho('Bolo de Limão', 8.00, 'qtdBoloLimao')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <div class="img-placeholder"><img src="imagens/bolo morango.jpeg" alt="Bolo de Morango"></div>
+    <h3>Bolo de Morango</h3>
+    <p>R$ 9,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdBoloMorango">
+    <button onclick="addCarrinho('Bolo de Morango', 9.00, 'qtdBoloMorango')">Adicionar</button>
+  </div>
+</section>
+
+
+  <!-- Combos -->
+<section id="combos" class="menu">
+  <h2>🎁 Combos</h2>
+
+  <div class="item">
+    <h3>Expresso + Bolo de Chocolate</h3>
+    <p>R$ 10,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdCombo1">
+    <button onclick="addCarrinho('Combo Expresso + Bolo', 10.00, 'qtdCombo1')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <h3>Cappuccino + Bolo de Cenoura</h3>
+    <p>R$ 14,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdCombo2">
+    <button onclick="addCarrinho('Combo Cappuccino + Bolo', 14.00, 'qtdCombo2')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <h3>Latte + Bolo Red Velvet</h3>
+    <p>R$ 18,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdCombo3">
+    <button onclick="addCarrinho('Combo Latte + Bolo Red Velvet', 18.00, 'qtdCombo3')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <h3>Frappuccino + Bolo de Morango</h3>
+    <p>R$ 20,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdCombo4">
+    <button onclick="addCarrinho('Combo Frappuccino + Bolo Morango', 20.00, 'qtdCombo4')">Adicionar</button>
+  </div>
+
+  <div class="item">
+    <h3>Smoothie + Bolo de Limão</h3>
+    <p>R$ 17,00</p>
+    <input type="number" min="1" value="1" class="quantidade" id="qtdCombo5">
+    <button onclick="addCarrinho('Combo Smoothie + Bolo Limão', 17.00, 'qtdCombo5')">Adicionar</button>
+  </div>
+</section>
+
+<!-- ===== Combos Especiais ===== -->
+<section id="combos" class="menu">
+  <h2>🎁 Combos Especiais</h2>
+
+  <!-- Combo 1: Expresso + Bolo de Chocolate -->
+  <div class="item">
+    <h3>Combo Expresso + Bolo de Chocolate</h3>
+    <p>R$ 11,00</p>
+    <input type="number" min="1" value="1" id="qtdCombo1">
+    <button onclick="addCarrinho('Combo Expresso + Bolo de Chocolate', 11.00, 'qtdCombo1')">Adicionar</button>
+  </div>
+
+  <!-- Combo 2: Cappuccino Gelado + Bolo de Cenoura -->
+  <div class="item">
+    <h3>Combo Cappuccino Gelado + Bolo de Cenoura</h3>
+    <p>R$ 15,00</p>
+    <input type="number" min="1" value="1" id="qtdCombo2">
+    <button onclick="addCarrinho('Combo Cappuccino Gelado + Bolo de Cenoura', 15.00, 'qtdCombo2')">Adicionar</button>
+  </div>
+
+  <!-- Combo 3: Latte + Bolo Red Velvet -->
+  <div class="item">
+    <h3>Combo Latte + Bolo Red Velvet</h3>
+    <p>R$ 19,00</p>
+    <input type="number" min="1" value="1" id="qtdCombo3">
+    <button onclick="addCarrinho('Combo Latte + Bolo Red Velvet', 19.00, 'qtdCombo3')">Adicionar</button>
+  </div>
+
+  <!-- Combo 4: Iced Mocha + Milkshake de Morango -->
+  <div class="item">
+    <h3>Combo Iced Mocha + Milkshake de Morango</h3>
+    <p>R$ 30,00</p>
+    <input type="number" min="1" value="1" id="qtdCombo4">
+    <button onclick="addCarrinho('Combo Iced Mocha + Milkshake de Morango', 30.00, 'qtdCombo4')">Adicionar</button>
+  </div>
+
+  <!-- Combo 5: Café Gelado + Frappuccino -->
+  <div class="item">
+    <h3>Combo Café Gelado + Frappuccino</h3>
+    <p>R$ 25,00</p>
+    <input type="number" min="1" value="1" id="qtdCombo5">
+    <button onclick="addCarrinho('Combo Café Gelado + Frappuccino', 25.00, 'qtdCombo5')">Adicionar</button>
+  </div>
+
+  <!-- Combo 6: Americano Gelado + Bolo de Limão -->
+  <div class="item">
+    <h3>Combo Americano Gelado + Bolo de Limão</h3>
+    <p>R$ 16,00</p>
+    <input type="number" min="1" value="1" id="qtdCombo6">
+    <button onclick="addCarrinho('Combo Americano Gelado + Bolo de Limão', 16.00, 'qtdCombo6')">Adicionar</button>
+  </div>
+</section>
+
+
+
+  <footer>
+    <p>© 2025 Cafeteria Zene - Todos os direitos reservados</p>
+  </footer>
+
+  <!-- Carrinho -->
+  <div class="carrinho" id="carrinhoBtn" onclick="toggleCarrinho()">
+    🛒 Carrinho <span id="qtd">0</span>
+  </div>
+
+  <div class="carrinho-modal" id="carrinhoModal">
+    <h3>Seu Carrinho</h3>
+    <ul id="listaCarrinho"></ul>
+    <p id="total">Total: R$ 0,00</p>
+    <button id="finalizarCompra">Finalizar Compra</button>
+  </div>
+
+  <script>
+    let carrinho = [];
+    let totalCompra = 0;
+
+    function addCarrinho(nomeItem, preco, idQtd){
+      const qtd = parseInt(document.getElementById(idQtd).value);
+      totalCompra += preco * qtd;
+      carrinho.push({nome: nomeItem, preco: preco, qtd: qtd});
+
+      document.getElementById('qtd').innerText = carrinho.reduce((acc, item) => acc + item.qtd, 0);
+
+      const lista = document.getElementById('listaCarrinho');
+      lista.innerHTML = '';
+      carrinho.forEach(item => {
+        const li = document.createElement('li');
+        li.innerText = `${item.nome} x${item.qtd} - R$ ${(item.preco * item.qtd).toFixed(2)}`;
+        lista.appendChild(li);
+      });
+
+      document.getElementById('total').innerText = "Total: R$ " + totalCompra.toFixed(2);
+
+      // anima carrinho
+      const carrinhoBtn = document.getElementById('carrinhoBtn');
+      carrinhoBtn.classList.add('animar');
+      setTimeout(() => carrinhoBtn.classList.remove('animar'), 300);
+    }
+
+    function toggleCarrinho(){
+      const modal = document.getElementById('carrinhoModal');
+      modal.style.display = modal.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.getElementById('finalizarCompra').addEventListener('click', function() {
+      if(totalCompra === 0){
+        alert('Seu carrinho está vazio!');
+        return;
+      }
+      localStorage.setItem('totalCompra', totalCompra.toFixed(2));
+      window.location.href = "pagamento.html";
+    });
+  </script>
+</body>
+</html>
